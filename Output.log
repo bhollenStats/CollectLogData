@@ -1,0 +1,62 @@
+Collecting Log Data [deep] from 2019-11-11|11:34:56 to 2019-11-11|12:34:56 within the directory 'LogFiles':
+Date|Time|SourceFile|LogMessage
+2019-11-11|12:20:56|LogFiles/TBTOut.log|(I);2019-11-11;12:20:56;Message one is here
+2019-11-11|12:21:56|LogFiles/TBTOut.log|(I);2019-11-11;12:21:56;Message two is here
+2019-11-11|12:22:56|LogFiles/TBTOut.log|(I);2019-11-11;12:22:56;Message three is here
+2019-11-11|12:23:56|LogFiles/TBTOut.log|(I);2019-11-11;12:23:56;Message four is here
+2019-11-11|12:24:56|LogFiles/TBTOut.log|(I);2019-11-11;12:24:56;Message five is here
+2019-11-11|12:25:56|LogFiles/TBTOut.log|(I);2019-11-11;12:25:56;Message six is here
+2019-11-11|12:26:56|LogFiles/TBTOut.log|(I);2019-11-11;12:26:56;Message seven is here
+2019-11-11|12:27:56|LogFiles/TBTOut.log|(I);2019-11-11;12:27:56;Message eight is here
+2019-11-11|12:28:56|LogFiles/TBTOut.log|(I);2019-11-11;12:28:56;Message nine
+2019-11-11|12:29:56|LogFiles/TBTOut.log|(I);2019-11-11;12:29:56;Message ten
+2019-11-11|12:30:56|LogFiles/TBTOut.log|(I);2019-11-11;12:30:56;Message eleven
+2019-11-11|12:31:56|LogFiles/TBTOut.log|(I);2019-11-11;12:31:56;Message twelve
+2019-11-11|12:32:56|LogFiles/TBTOut.log|(I);2019-11-11;12:32:56;Message thirteen
+2019-11-11|12:33:56|LogFiles/TBTOut.log|(I);2019-11-11;12:33:56;Message fourteen
+2019-11-11|12:34:56|LogFiles/TBTOut.log|(I);2019-11-11;12:34:56;Message fifteen
+2019-11-11|12:20:56|LogFiles/File1.log|(I);2019-11-11T12:20:56;Message one is here
+2019-11-11|12:21:56|LogFiles/File1.log|(I);2019-11-11T12:21:56;Message two is here
+2019-11-11|12:22:56|LogFiles/File1.log|(I);2019-11-11T12:22:56;Message three is here
+2019-11-11|12:23:56|LogFiles/File1.log|(I);2019-11-11T12:23:56;Message four is here
+2019-11-11|12:24:56|LogFiles/File1.log|(I);2019-11-11T12:24:56;Message five is here
+2019-11-11|12:25:56|LogFiles/File1.log|(I);2019-11-11T12:25:56;Message six is here
+2019-11-11|12:26:56|LogFiles/File1.log|(I);2019-11-11T12:26:56;Message seven is here
+2019-11-11|12:27:56|LogFiles/File1.log|(I);2019-11-11T12:27:56;Message eight is here
+2019-11-11|12:28:56|LogFiles/File1.log|(I);2019-11-11T12:28:56;Message nine
+2019-11-11|12:29:56|LogFiles/File1.log|(I);2019-11-11T12:29:56;Message ten
+2019-11-11|12:30:56|LogFiles/File1.log|(I);2019-11-11T12:30:56;Message eleven
+2019-11-11|12:31:56|LogFiles/File1.log|(I);2019-11-11T12:31:56;Message twelve
+2019-11-11|12:32:56|LogFiles/File1.log|(I);2019-11-11T12:32:56;Message thirteen
+2019-11-11|12:33:56|LogFiles/File1.log|(I);2019-11-11T12:33:56;Message fourteen
+2019-11-11|12:34:56|LogFiles/File1.log|(I);2019-11-11T12:34:56;Message fifteen
+2019-11-11|12:20:56|LogFiles/messages.log|(I);2019-11-11T12:20:56;Message one is here
+2019-11-11|12:21:56|LogFiles/messages.log|(I);2019-11-11T12:21:56;Message two is here
+2019-11-11|12:22:56|LogFiles/messages.log|(I);2019-11-11T12:22:56;Message three is here
+2019-11-11|12:23:56|LogFiles/messages.log|(I);2019-11-11T12:23:56;Message four is here
+2019-11-11|12:24:56|LogFiles/messages.log|(I);2019-11-11T12:24:56;Message five is here
+2019-11-11|12:25:56|LogFiles/messages.log|(I);2019-11-11T12:25:56;Message six is here
+2019-11-11|12:26:56|LogFiles/messages.log|(I);2019-11-11T12:26:56;Message seven is here
+2019-11-11|12:27:56|LogFiles/messages.log|(I);2019-11-11T12:27:56;Message eight is here
+2019-11-11|12:28:56|LogFiles/messages.log|(I);2019-11-11T12:28:56;Message nine
+2019-11-11|12:29:56|LogFiles/messages.log|(I);2019-11-11T12:29:56;Message ten
+2019-11-11|12:30:56|LogFiles/messages.log|(I);2019-11-11T12:30:56;Message eleven
+2019-11-11|12:31:56|LogFiles/messages.log|(I);2019-11-11T12:31:56;Message twelve
+2019-11-11|12:32:56|LogFiles/messages.log|(I);2019-11-11T12:32:56;Message thirteen
+2019-11-11|12:33:56|LogFiles/messages.log|(I);2019-11-11T12:33:56;Message fourteen
+2019-11-11|12:34:56|LogFiles/messages.log|(I);2019-11-11T12:34:56;Message fifteen
+2019-11-11|12:20:56|LogFiles/File2.log|(I);2019-11-11;12:20:56;Message one is here
+2019-11-11|12:21:56|LogFiles/File2.log|(I);2019-11-11;12:21:56;Message two is here
+2019-11-11|12:22:56|LogFiles/File2.log|(I);2019-11-11;12:22:56;Message three is here
+2019-11-11|12:23:56|LogFiles/File2.log|(I);2019-11-11;12:23:56;Message four is here
+2019-11-11|12:24:56|LogFiles/File2.log|(I);2019-11-11;12:24:56;Message five is here
+2019-11-11|12:25:56|LogFiles/File2.log|(I);2019-11-11;12:25:56;Message six is here
+2019-11-11|12:26:56|LogFiles/File2.log|(I);2019-11-11;12:26:56;Message seven is here
+2019-11-11|12:27:56|LogFiles/File2.log|(I);2019-11-11;12:27:56;Message eight is here
+2019-11-11|12:28:56|LogFiles/File2.log|(I);2019-11-11;12:28:56;Message nine
+2019-11-11|12:29:56|LogFiles/File2.log|(I);2019-11-11;12:29:56;Message ten
+2019-11-11|12:30:56|LogFiles/File2.log|(I);2019-11-11;12:30:56;Message eleven
+2019-11-11|12:31:56|LogFiles/File2.log|(I);2019-11-11;12:31:56;Message twelve
+2019-11-11|12:32:56|LogFiles/File2.log|(I);2019-11-11;12:32:56;Message thirteen
+2019-11-11|12:33:56|LogFiles/File2.log|(I);2019-11-11;12:33:56;Message fourteen
+2019-11-11|12:34:56|LogFiles/File2.log|(I);2019-11-11;12:34:56;Message fifteen
