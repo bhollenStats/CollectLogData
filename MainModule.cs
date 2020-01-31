@@ -58,7 +58,7 @@ namespace CollectLogData
         private const string datetimeFormat = "yyyy-MM-dd'|'HH:mm:ss";
         private const string justDateFormat = "yyyy-MM-dd";
         private const string justTimeFormat = "HH:mm:ss";
-        private const string shallowFilesToSearch = "mess*;TBT*";
+        private const string shallowFilesToSearch = "messages.p*;TBT*";
         private const string fileContentFields = "Date|Time|SourceFile|LogMessage";
     
         static void Main(string[] args)

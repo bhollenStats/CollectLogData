@@ -3,3 +3,13 @@ obj/
 bin/
 *.out
 *.csv
+
+.vs/CollectLogData/DesignTimeBuild/
+
+.vs/CollectLogData/v16/.suo
+
+.vs/CollectLogData/v16/Server/sqlite3/db.lock
+
+.vs/CollectLogData/v16/Server/sqlite3/storage.ide
+
+CollectLogData.sln
