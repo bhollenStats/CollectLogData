@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -153,10 +153,27 @@ namespace CollectLogData
                 Console.WriteLine(fileContentFields);
                 sW.WriteLine(messageStartOfCollection, startDateTime.ToString(datetimeFormat), eventDateTime.ToString(datetimeFormat), dirToSearch, searchDepth);
                 sW.WriteLine(fileContentFields);
+                bool roCopyToDelete = false;
 
                 foreach (String s in matchingFiles)
                 {
-                    StreamReader reader = File.OpenText(s.ToString());
+                    String file2Open = s.ToString();
+
+                    try
+                    {
+                        StreamReader testReader = File.OpenText(file2Open);
+                        testReader.Close();
+                        roCopyToDelete = false;
+                    }
+                    catch (Exception)
+                    {
+                        File.Copy(file2Open, file2Open + ".roCopy");
+                        file2Open += ".roCopy";
+                        roCopyToDelete = true;
+                    }
+
+                    StreamReader reader = File.OpenText(file2Open);
+
                     string stringDT;
                     DateTime dateDT;
                     while (!reader.EndOfStream)
@@ -212,6 +229,10 @@ namespace CollectLogData
                         }
                     }
                     reader.Close();
+                    if (roCopyToDelete == true)
+                    {
+                        File.Delete(file2Open);
+                    }
                 }
             }
         }
