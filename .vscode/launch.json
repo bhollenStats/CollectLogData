@@ -11,7 +11,7 @@
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/bin/Debug/netcoreapp3.0/CollectLogData.dll",
-            "args": ["--eventDate=2019-11-11", "--eventTime=12:34:56", "--directory=LogFiles", "--timeWindow=10[m]", "--outputFilename=CollectLogData.out", "--searchDepth=deep"],
+            "args": ["--eventDate=2019-11-11", "--eventTime=12:34:56", "--directory=LogFiles", "--timeWindow=10[m]", "--searchDepth=deep"],
             "cwd": "${workspaceFolder}",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",

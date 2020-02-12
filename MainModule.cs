@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -6,7 +6,7 @@ namespace CollectLogData
 {
     class MainModule
     {
-        private const string messageStartOfCollection = "Collecting Log Data [{3}] from {0} to {1} within the directory '{2}':";
+        private const string messageStartOfCollection = "Collecting Log Data [{3}] from {0} to {1} within the directory '{2}' into the file {4}";
         private static readonly string[] commandLineMessage = {
             @"",
             @"CollectLogData requires two arguments to indicate the event date and time",
@@ -33,7 +33,8 @@ namespace CollectLogData
             @"    --outputFilename=filename",
             @"        This option will open and write the output from the program to the location specified",
             @"        in the value for the argument, e.g. 'CollectLogFile.out",
-            @"        Default value is 'Output.log'",
+            @"        Default value is constructed from command inputs or defaults,",
+            @"        e.g. 20201231T112233_CLD_1h_shallow.csv",
             @"",
             @"    --searchDepth=[shallow|deep]",
             @"        This option will allow for either a shallow or deep search of the log files contained",
@@ -60,7 +61,7 @@ namespace CollectLogData
         private const string justTimeFormat = "HH:mm:ss";
         private const string shallowFilesToSearch = "messages.p*;TBT*";
         private const string fileContentFields = "Date|Time|SourceFile|LogMessage";
-    
+
         static void Main(string[] args)
         {
 
@@ -79,7 +80,7 @@ namespace CollectLogData
             Dictionary<String, String> processArgs = clp.Process(args, cmdArguments);
 
             // Check to see if there was a problem to process and get all the command line arguments
-            if ("False".CompareTo(processArgs["ParseStatus"])==0)
+            if ("False".CompareTo(processArgs["ParseStatus"]) == 0)
             {
                 Console.WriteLine("Unable to process command line arguments!");
                 if (processArgs.ContainsKey("ParseMessage"))
@@ -93,10 +94,16 @@ namespace CollectLogData
                 processArgs.Add("--directory", ".");
             if (!processArgs.ContainsKey("--timeWindow"))
                 processArgs.Add("--timeWindow", "1[h]");
-            if (!processArgs.ContainsKey("--outputFilename"))
-                processArgs.Add("--outputFilename", "Output.log");
             if (!processArgs.ContainsKey("--searchDepth"))
                 processArgs.Add("--searchDepth", "shallow");
+            if (!processArgs.ContainsKey("--outputFilename"))
+            {
+                String generatedFilename = @"CLD_" + processArgs["--eventDate"].ToString().Replace("-","") + "T";
+                generatedFilename += processArgs["--eventTime"].ToString().Replace(":","") + "_";
+                generatedFilename += processArgs["--timeWindow"].ToString().Replace("[","").Replace("]","") + "_";
+                generatedFilename += processArgs["--searchDepth"] + ".csv";
+                processArgs.Add("--outputFilename", generatedFilename);
+            }
 
             // ToDo: Validation checking
             string eventTime = processArgs["--eventTime"];
@@ -113,7 +120,7 @@ namespace CollectLogData
             DateTime startDateTime;
             string[] timeWindowValues = timeWindow.Split('[');
             int timeWindowValue = Int32.Parse(timeWindowValues[0]);
-            string timeWindowUnit = timeWindowValues[1].Substring(0,1);
+            string timeWindowUnit = timeWindowValues[1].Substring(0, 1);
             switch (timeWindowUnit.ToString().ToLower())
             {
                 case "m":
@@ -136,7 +143,7 @@ namespace CollectLogData
 
             // Determine the files to search for
             string searchPattern = "";
-            if (searchDepth.CompareTo("deep")==0)
+            if (searchDepth.CompareTo("deep") == 0)
                 searchPattern = "*";
             else
                 searchPattern = shallowFilesToSearch;
@@ -149,9 +156,9 @@ namespace CollectLogData
             // time window from the startDateTime to the eventDateTime
             using (StreamWriter sW = new StreamWriter(outputFilename.ToString()))
             {
-                Console.WriteLine(messageStartOfCollection, startDateTime.ToString(datetimeFormat), eventDateTime.ToString(datetimeFormat), dirToSearch, searchDepth);
+                Console.WriteLine(messageStartOfCollection, startDateTime.ToString(datetimeFormat), eventDateTime.ToString(datetimeFormat), dirToSearch, searchDepth, outputFilename.ToString());
                 Console.WriteLine(fileContentFields);
-                sW.WriteLine(messageStartOfCollection, startDateTime.ToString(datetimeFormat), eventDateTime.ToString(datetimeFormat), dirToSearch, searchDepth);
+                sW.WriteLine(messageStartOfCollection, startDateTime.ToString(datetimeFormat), eventDateTime.ToString(datetimeFormat), dirToSearch, searchDepth, outputFilename.ToString());
                 sW.WriteLine(fileContentFields);
                 bool roCopyToDelete = false;
 
@@ -188,7 +195,7 @@ namespace CollectLogData
                             startDateIndex = line.IndexOf(startDateTime.ToString(justDateFormat));
                         else
                             startDateIndex = 0;
-                        
+
                         // Was there a match from the line in the file?
                         if (startDateIndex > 0 || eventDateIndex > 0)
                         {
@@ -201,26 +208,26 @@ namespace CollectLogData
                                         stringDT = stringDT.Replace(';', 'T');
                                     dateDT = DateTime.Parse(stringDT);
                                 }
-                                catch(Exception)
+                                catch (Exception)
                                 {
                                     continue;
                                 }
-                            } 
-                            else 
+                            }
+                            else
                             {
                                 try
                                 {
                                     stringDT = line.Substring(eventDateIndex, 19);
                                     if (stringDT.Substring(11).CompareTo(";") != 0)
                                         stringDT = stringDT.Replace(';', 'T');
-                                    dateDT = DateTime.Parse(stringDT);                            
+                                    dateDT = DateTime.Parse(stringDT);
                                 }
-                                catch(Exception)
+                                catch (Exception)
                                 {
                                     continue;
                                 }
                             }
-                            
+
                             if (dateDT >= startDateTime && dateDT <= eventDateTime)
                             {
                                 Console.WriteLine("{0}|{1}|{2}", dateDT.ToString(datetimeFormat), s.ToString(), line);
