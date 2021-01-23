@@ -21,8 +21,9 @@ namespace CollectLogData
             @"OPTIONAL ARGUMENTS",
             @"",
             @"    --directory=path",
-            @"        Specifies the directory to search for relevant log messages.",
+            @"        Specifies the directory(s) to search for relevant log messages.",
             @"        Default value is the current directory '.'",
+            @"        Value could be a semicolon-separated path, e.g. '.;./dirA;./dirB",
             @"",
             @"    --timeWindow=x[d|h|m]",
             @"        Specifies the time window in which to search for relevant log messages.",
@@ -48,7 +49,10 @@ namespace CollectLogData
             @"        Shallow collection of relevant log files from the current directory plus/minus one hour",
             @"",
             @"    CollectLogData --eventDate=2019-11-04 --eventTime=03:33:21",
-            @"        Collects relevant log files from the 'd:/log' directory plus/minus one hour",
+            @"        Collects relevant log files from the current directory plus/minus one hour",
+            @"",
+            @"    CollectLogData --eventDate=2019-11-04 --eventTime=03:33:21 --directory=.;./dirA;./dirB",
+            @"        Collects relevant log files from the directories provided for plus/minus one hour",
             @"",
             @"    CollectLogData --eventDate=2019-08-12 --eventTime=09:05:44 --directory=../. --timeWindow=30[m]",
             @"        Collects relevant log files from the '../.' directory plus/minus thirty minutes",
@@ -149,8 +153,31 @@ namespace CollectLogData
                 searchPattern = shallowFilesToSearch;
 
             // Build a list of all the matching files from the directory provided
-            FileCollectionMod.FileCollection lfc = new FileCollectionMod.FileCollection(dirToSearch, searchPattern);
-            List<String> matchingFiles = lfc.BuildFileCollection();
+            List<String> matchingFiles = new List<String>();
+
+            if (dirToSearch.Contains(";")) 
+            {
+                string[] paths2Search = dirToSearch.Split(";");
+
+                foreach (string p in paths2Search) 
+                {
+                    try
+                    {
+                        FileCollectionMod.FileCollection lfc = new FileCollectionMod.FileCollection(p, searchPattern);  
+                        matchingFiles.AddRange(lfc.BuildFileCollection());  
+                    }
+                    catch(Exception)
+                    {
+                        Console.WriteLine(@"Unable to search {0}", p);
+                    }
+                
+                }
+            }
+            else
+            {
+                FileCollectionMod.FileCollection lfc = new FileCollectionMod.FileCollection(dirToSearch, searchPattern);
+                matchingFiles.AddRange(lfc.BuildFileCollection());
+            }
 
             // Iterate through each of the matching files to find log messages within the 
             // time window from the startDateTime to the eventDateTime
